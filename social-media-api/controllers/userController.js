@@ -12,7 +12,7 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const total = users.length;
-
+ 
     // Get paginated results
     const results = users.slice(startIndex, endIndex);
 
@@ -135,4 +135,4 @@ exports.deleteUser = asyncHandler(async (req, res, next) => {
         success: true,
         data: {}
     });
-});
+});  

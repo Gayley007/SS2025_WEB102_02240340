@@ -61,7 +61,9 @@
     <h1>Social Media API Documentation</h1>
     <p>This is the documentation for the Social Media API, a RESTful API for a platform.</p>
 
+
     <h2>Users</h2>
+
 <!-- list all User -->
     <div class="endpoint">
         <span class="method get">GET</span>
@@ -114,6 +116,7 @@
 }
         </pre>
     </div>
+
 <!-- Specific User -->
     <div class="endpoint">
         <span class="method get">GET</span>
@@ -149,6 +152,7 @@
 }
         </pre>
     </div>
+
 <!-- Create New User -->
     <div class="endpoint">
         <span class="method get">POST</span>
@@ -180,8 +184,246 @@
         "created_at": "2023-01-15"
     }
 }
-    </pre>            
+        </pre>            
     </div>
+
+<!-- Update existing User -->
+    <div class="endpoint">
+        <span class="method put">PUT</span>
+        <span class="url">/api/users/:id</span>
+        <p>Update a user</p>
+
+        <h3>Request Body</h3>
+        <pre>
+{   
+    "data": {
+        "username": "traveler update",
+        "email": "abcd",
+        "full_name": "traveler karma",
+        "profile_picture": "",
+        "bio": "i am a Traveler"
+    }
+}
+        </pre>
+        
+        <h3>Response</h3>
+        <pre>
+{   
+    "success": true, 
+    "data": { 
+        "id": "1", 
+        "username": "updated_user", 
+        "full_name": "Updated Karma", 
+        "email": "updated@example.com", 
+        "profile_picture": "https://example.com/profiles/updated.jpg", 
+        "bio": "Updated bio" 
+    } 
+}
+        </pre>
+    </div>
+
+<!-- Delete User -->
+    <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <span class="url">/api/users/:id</span>
+        <p>Delete a user</p>
+
+        <h3>Response</h3>
+        <pre>
+{   
+    "success": true, 
+    data": {} }</pre>
+</div>
+
+    <h2>Posts</h2>
+
+<!-- list all Posts -->
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="url">/api/posts</span>
+        <p>Get a list of all posts with pagination</p>
+
+        <h3>Query Parameters</h3>
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>page</td>
+                <td>Number</td>
+                <td>Page number (default: 1)</td>
+            </tr>
+            <tr>
+                <td>limit</td>
+                <td>Number</td>
+                <td>Number of posts per page (default: 10)</td>
+            </tr>
+        </table>
+
+        <h3>Response</h3>
+        <pre>
+{
+    "success": true,
+    "count": 2,
+    "page": 1,
+    "total_pages": 2,
+    "pagination": {
+        "next": {
+            "page": 2,
+            "limit": 10
+        }
+    },
+    "data": [
+        {
+            "id": "1",
+            "caption": "Beautiful sunset",
+            "image": "https://example.com/images/sunset.jpg",
+            "user": {
+                "id": "1",
+                "username": "traveler",
+                "full_name": "Karma",
+                "profile_picture": "https://example.com/profiles/traveler.jpg"
+            },
+            "created_at": "2023-01-15"
+        },
+        {
+            "id": "2",
+            "caption": "Beautiful sunset",
+            "image": "https://example.com/images/sunset.jpg",
+            "user": {
+                "id": "1",
+                "username": "traveler",
+                "full_name": "Pema",
+                "profile_picture": "https://example.com/profiles/traveler.jpg"
+            },
+            "created_at": "2023-01-15"
+        },
+    ]
+}
+        </pre>
+    </div>
+
+<!-- Get Specific Post -->
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="url">/api/posts/{post id}</span>
+        <p>Retrieve a specific post</p>
+
+        <h3></h3>
+        
+    </div>
+
+<!-- Update Post -->
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <span class="url">/api/posts/{post_id}</span>
+        <p>Update a post</p>
+    </div>
+
+<!-- Create New Post -->
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <span class="url">/api/posts/{post_id}</span>
+        <p>Create a new post</p>
+
+        <h3>Request body 
+{
+    "id": "2",
+    "content": "New post content",
+    "image": "image_url"
+    "caption": "Beautiful sunset",
+}
+                      
+    </h3>
+</div>
+
+<!-- Delete Post -->
+    <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <span class="url">/api/posts/{post_id}</span>
+        <p>Delete a post</p>
+
+    </div>
+
+<h2>Comment</h2>
+
+<!-- list all comments -->
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <span class="url">/api/comments</span>
+        <p>Get all comments</p>
+        
+        <h3>Response</h3>
+        <pre>{ "success": true, "data": [ { "id": "1", "post_id": "1", "user_id": "2", "comment": "Nice photo!", "created_at": "2023-03-01" } ] }</pre>
+    </div>
+
+<!-- Create a comment -->
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <span class="url">/api/comments</span>
+        <p>Create a comment</p>
+
+        <h3>Request Body</h3>
+        <pre>
+{ 
+    "post_id": "string", 
+    "user_id": "string", 
+    "comment": "string" 
+}
+        </pre>
+    
+        <h3>Response</h3>
+        <pre>
+{ 
+    "success": true,
+    "data":
+        { 
+            "id": "2", 
+            "post_id": "1", 
+            "user_id": "3", 
+            "comment": "Great shot!", 
+            "created_at": "2023-03-05" 
+        } 
+}   
+        </pre>
+    </div>
+
+<!-- Delete a Comment  -->
+    <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/api/posts/{post_id}</span>
+    <p>Create a new post</p>
+
+    <h3>Request body</h3>
+
+
+<!-- Update Comment -->
+
+
+    <h2>Like</h2>
+
+<!--  -->
+
+
+<!--  -->
+
+
+<!--  -->
+
+
+
+    <h2>Follow</h2>
+
+<!--  -->
+
+
+<!--  -->
+
+
+<!--  -->
+
 
 
 </body>
