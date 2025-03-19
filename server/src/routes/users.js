@@ -29,4 +29,5 @@ router.post('/:id/followers', userController.followUser);
 // DELETE /api/users/:id/followers - Unfollow user
 router.delete('/:id/followers', userController.unfollowUser);
 
-module.exports = router;
+module.exports = router;
+

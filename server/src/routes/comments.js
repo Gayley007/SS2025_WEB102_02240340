@@ -23,4 +23,4 @@ router.post('/:id/likes', commentController.likeComment);
 // DELETE /api/comments/:id/likes - Unlike comment
 router.delete('/:id/likes', commentController.unlikeComment);
 
-module.exports = router;
+module.exports = router;

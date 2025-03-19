@@ -185,4 +185,4 @@ const unlikeVideo = (req, res) => {
     getVideoLikes,
     likeVideo,
     unlikeVideo
-  };
+};

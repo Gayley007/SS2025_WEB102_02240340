@@ -107,6 +107,38 @@ const getUserComments = (req, res) => {
     res.status(200).json(comments);
 }
 
+// POST like a comment
+const likeComment = (req, res) => {
+  const commentId = parseInt(req.params.id);
+  const comment = dataStore.comments.find(c => c.id === commentId);
+
+  if (!comment) {
+    return res.status(404).json({ error: 'Comment not found' });
+  }
+
+  // Increment the like count
+  comment.likes = (comment.likes || 0) + 1;
+
+  res.status(200).json(comment);
+};
+
+// DELETE unlike a comment
+const unlikeComment = (req, res) => {
+  const commentId = parseInt(req.params.id);
+  const comment = dataStore.comments.find(c => c.id === commentId);
+
+  if (!comment) {
+    return res.status(404).json({ error: 'Comment not found' });
+  }
+
+  // Decrement the like count if it's greater than 0
+  if (comment.likes > 0) {
+    comment.likes -= 1;
+  }
+
+  res.status(200).json(comment);
+};
+
 module.exports = {
   getAllComments,
   getCommentById,
@@ -114,5 +146,7 @@ module.exports = {
   updateComment,
   deleteComment,
   getVideoComments,
-  getUserComments
+  getUserComments,
+  likeComment,
+  unlikeComment
 };
