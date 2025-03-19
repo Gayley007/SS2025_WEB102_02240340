@@ -4,30 +4,30 @@ const videoController = require('../controllers/videoController');
 const router = express.Router();
 
 // GET all videos
-router.get('/api/videos', videoController.getAllVideos);
+router.get('/', videoController.getAllVideos);
 
 // POST create a new video
-router.post('/api/videos', videoController.createVideo);
+router.post('/', videoController.createVideo);
 
 // GET video by ID
-router.get('/api/videos/:id', videoController.getVideoById);
+router.get('/:id', videoController.getVideoById);
 
 // PUT update a video
-router.put('/api/videos/:id', videoController.updateVideo);
+router.put('/:id', videoController.updateVideo);
 
 // DELETE a video
-router.delete('/api/videos/:id', videoController.deleteVideo);
+router.delete('/:id', videoController.deleteVideo);
 
 // GET video comments
-router.get('/api/videos/:id/comments', videoController.getVideoComments);
+router.get('/:id/comments', videoController.getVideoComments);
 
 // GET video likes
-router.get('/api/videos/:id/likes', videoController.getVideoLikes);
+router.get('/:id/likes', videoController.getVideoLikes);
 
 // POST like a video
-router.post('/api/videos/:id/likes', videoController.likeVideo);
+router.post('/:id/likes', videoController.likeVideo);
 
 // DELETE unlike a video
-router.delete('/api/videos/:id/likes', videoController.unlikeVideo);
+router.delete('/:id/likes', videoController.unlikeVideo);
 
-module.exports = router;
+module.exports = router;
